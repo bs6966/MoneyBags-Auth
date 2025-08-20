@@ -60,7 +60,7 @@ BODY (Content-Type: x-www-form-urlencoded)
     `Spring Security`
 
 12. Add the following config in your application.properties file
-    `spring.security.oauth2.resourceserver.jwt.issuer-uri=http://localhost:8080`
+    `spring.security.oauth2.resourceserver.jwt.issuer-uri=http://localhost:9090`
 
 13. Add the following class in your project
 ```java
