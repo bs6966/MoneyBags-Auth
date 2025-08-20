@@ -108,3 +108,21 @@ Now all your requests will be authenticated. To restrict a certain endpoint for 
 change and add this line
 `requestMatchers(HttpMethod.GET, "/api/test/test1").hasAuthority("CUSTOMER")`
 modify it according to your project and make sure the authorization server is always running on port 9090
+
+## To access logged in user's information in your endpoint
+
+```java
+@RestController
+@RequestMapping("/api/test")
+public class TestController {
+    @GetMapping("test1")
+    public String test1(
+        @AuthenticationPrincipal(expression = "claims['id']") Long userId,
+        @AuthenticationPrincipal(expression = "claims['sub']") String username,
+        @AuthenticationPrincipal(expression = "claims['roles']") List<String> roles
+    ) {
+        return "User's ID is " + userId + ", username is "  + username + ", roles are " + roles;
+    }
+}
+```
+
