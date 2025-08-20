@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: moneybags-auth
+  datasource:
+    url: jdbc:oracle:thin:@//10.103.99.1:1521/FREE
+    username: system
+    password: root
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+rsa:
+  private-key: classpath:certs/private.pem
+  public-key: classpath:certs/public.pem
+  key-id: moneybag-auth-key
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+server:
+  port: 9090
