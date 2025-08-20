@@ -23,11 +23,11 @@ commit;
 ```
 
 5. Open your browser and enter the following url and login with credentials of the user that you created
-   http://localhost:9090/oauth2/authorize?response_type=code&client_id=moneybags-client&scope=openid%20profile&redirect_uri=http://localhost:3000/login/redirect
+   http://localhost:9090/oauth2/authorize?response_type=code&client_id=moneybags-client&scope=openid%20profile&redirect_uri=http://localhost:8000/?ojr=redirect
 
 6. Check the "profile" checkbox and click accept
 
-7. You will be redirected to a http://localhost:3000/login/redirect?code=`<Some Code>`. Copy the code in this URL
+7. You will be redirected to a http://localhost:8000/?ojr=redirect&code=`<Some Code>`. Copy the code in this URL
 
 8. Send a request to
    `POST http://localhost:9090/oauth2/token`
@@ -35,7 +35,7 @@ commit;
 BODY (Content-Type: x-www-form-urlencoded)
    grant_type = authorization_code
    code = <CODE THAT YOU COPIED IN PREVIOUS STEP>
-   redirect_uri = http://localhost:3000/login/redirect
+   redirect_uri = http://localhost:8000/?ojr=redirect
    client_id = moneybags-client
    client_secret = secret
 ```
@@ -49,7 +49,7 @@ BODY (Content-Type: x-www-form-urlencoded)
 BODY (Content-Type: x-www-form-urlencoded)
     grant_type = refresh_token
     refresh_token = <REFRESH TOKEN THAT YOU COPIED>
-    redirect_uri = http://localhost:3000/login/redirect
+    redirect_uri = http://localhost:8000/?ojr=redirect
     client_id = moneybags-client
     client_secret = secret
     You will receive a new pair of Access and Refresh Token
