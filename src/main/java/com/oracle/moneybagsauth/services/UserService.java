@@ -18,9 +18,9 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public boolean register(RegisterRequest req) {
+    public Long register(RegisterRequest req) {
         if (userRepository.findByUsername(req.getUsername()).isPresent()) {
-            return false;
+            return null;
         }
 
         User user = new User();
@@ -40,6 +40,6 @@ public class UserService {
 
         user.setAuthorities(granted);
         userRepository.save(user);
-        return true;
+        return user.getId();
     }
 }

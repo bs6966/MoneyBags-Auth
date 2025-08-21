@@ -1,6 +1,7 @@
 package com.oracle.moneybagsauth.controllers;
 
 import com.oracle.moneybagsauth.dtos.requests.RegisterRequest;
+import com.oracle.moneybagsauth.dtos.response.RegisterResponse;
 import com.oracle.moneybagsauth.services.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -16,10 +17,13 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<Void> register(@Valid @RequestBody RegisterRequest req) {
-        boolean result = userService.register(req);
-        if (result) {
-            return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<? extends RegisterResponse> register(@Valid @RequestBody RegisterRequest req) {
+        Long result = userService.register(req);
+        if (result != null) {
+            return new ResponseEntity<>(
+                    new RegisterResponse(result, req.getUsername()),
+                    HttpStatus.CREATED
+            );
         }
         return  ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }

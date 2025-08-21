@@ -2,7 +2,7 @@ spring:
   application:
     name: moneybags-auth
   datasource:
-    url: jdbc:oracle:thin:@//10.103.99.1:1521/FREE
+    url: jdbc:oracle:thin:@//10.120.169.231:1521/FREE
     username: system
     password: root
     driver-class-name: oracle.jdbc.driver.OracleDriver
